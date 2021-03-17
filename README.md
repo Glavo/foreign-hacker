@@ -21,9 +21,13 @@ will allow programmers to use the [Foreign Linker API](https://openjdk.java.net/
 Node: `System.setProperty("foreign.restricted", "permit")` doesn't work,
 Foreign Linker API only detects the value of property `foreign.restricted` passed in when the JVM is started.
 
-## Add hacker to your build
+## Add to your build
 
-Gradle:
+### Download jar directly
+
+Pleas visit [releases](https://github.com/Glavo/foreign-hacker/releases/latest).
+
+### Gradle
 ```groovy
 repositories {
     maven { url 'https://jitpack.io' }
