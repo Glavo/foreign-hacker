@@ -51,8 +51,6 @@ public final class Main {
         );
         try (MemorySegment str = CLinker.toCString("str")) {
             System.out.println((int) handle.invoke(str.address()));
-        } catch (Throwable e) {
-            e.printStackTrace();
         }
     }
 }
