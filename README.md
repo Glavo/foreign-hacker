@@ -7,7 +7,7 @@ Allows programmers to enable the [Foreign Linker API](https://openjdk.java.net/j
 Java 16 or higher is required. 
 
 This library can't avoid other limitations of the incubator module. 
-You still need to use the `--add-module` and  `--enable-preview` option to use `jdk.incubator.foreign` module.
+You still need to add `--add-module jdk.incubator.foreign` and  `--enable-preview` options to JVM for use `jdk.incubator.foreign` module.
 
 ## Usage: 
 
@@ -29,5 +29,5 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
-implementation group: 'org.glavo', name: 'foreign-hacker', version: "0.1.0"
+implementation group: 'org.glavo', name: 'foreign-hacker', version: "0.1.1"
 ```
