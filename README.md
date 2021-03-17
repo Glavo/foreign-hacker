@@ -31,3 +31,29 @@ repositories {
 
 implementation group: 'org.glavo', name: 'foreign-hacker', version: "0.1.1"
 ```
+
+## Example
+```java
+import jdk.incubator.foreign.*;
+import org.glavo.foreign.hacker.ForeignHacker;
+
+import java.lang.invoke.MethodType;
+
+public final class Main {
+    public static void main(String[] args) throws Throwable {
+        ForeignHacker.enableForeignAccess();
+
+        LibraryLookup l = LibraryLookup.ofDefault();
+        var handle = CLinker.getInstance().downcallHandle(
+                l.lookup("strlen").orElse(null),
+                MethodType.methodType(int.class, MemoryAddress.class),
+                FunctionDescriptor.of(CLinker.C_INT, CLinker.C_POINTER)
+        );
+        try (MemorySegment str = CLinker.toCString("str")) {
+            System.out.println((int) handle.invoke(str.address()));
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
