@@ -25,7 +25,7 @@ Foreign Linker API only detects the value of property `foreign.restricted` passe
 
 ### Download jar directly
 
-Pleas visit [releases](https://github.com/Glavo/foreign-hacker/releases/latest).
+Please visit [releases](https://github.com/Glavo/foreign-hacker/releases/latest).
 
 ### Gradle
 ```groovy
