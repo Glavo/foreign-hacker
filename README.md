@@ -50,7 +50,7 @@ public final class Main {
                 FunctionDescriptor.of(CLinker.C_INT, CLinker.C_POINTER)
         );
         try (MemorySegment str = CLinker.toCString("str")) {
-            System.out.println((int) handle.invoke(str.address()));
+            System.out.println((int) handle.invokeExact(str.address()));
         }
     }
 }
