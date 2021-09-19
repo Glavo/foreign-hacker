@@ -35,7 +35,7 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
-implementation group: 'org.glavo', name: 'foreign-hacker', version: "0.2.0"
+implementation group: 'org.glavo', name: 'foreign-hacker', version: "0.2.1"
 ```
 
 ## Example

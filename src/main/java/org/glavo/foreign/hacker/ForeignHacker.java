@@ -33,7 +33,7 @@ public final class ForeignHacker {
     }
 
     public static boolean enableForeignAccess(Module module) {
-        return enableForeignAccess(null);
+        return enableForeignAccess(module, null);
     }
 
     public static boolean enableForeignAccess(Module module, PrintWriter errorHandle) {
