@@ -3,6 +3,7 @@ package org.glavo.foreign.hacker;
 import sun.misc.Unsafe;
 
 import java.io.PrintWriter;
+import java.lang.invoke.MethodHandles;
 import java.lang.module.ModuleDescriptor;
 import java.lang.reflect.Field;
 
@@ -50,9 +51,13 @@ public final class ForeignHacker {
                         "permit"
                 );
             } else if (Runtime.version().feature() >= 17) {
+                if (!module.isNamed()) {
+                    var lookup = MethodHandles.privateLookupIn(Module.class, MethodHandles.lookup());
+                    module = (Module) lookup.findStaticVarHandle(Module.class, "ALL_UNNAMED_MODULE", Module.class).get();
+                }
                 unsafe.putBoolean(
                         module,
-                        unsafe.objectFieldOffset(ModuleLike.class.getDeclaredField("enableNativeAccess")),
+                        unsafe.objectFieldOffset(ForeignHacker.ModuleLike.class.getDeclaredField("enableNativeAccess")),
                         true
                 );
             }
