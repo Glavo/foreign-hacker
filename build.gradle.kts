@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.glavo"
-version = "0.2.2".let {
+version = "0.2.3".let {
     if (System.getenv("JITPACK") == "true") it
     else "$it-SNAPSHOT"
 }

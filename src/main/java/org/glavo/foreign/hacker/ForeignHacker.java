@@ -33,8 +33,17 @@ public final class ForeignHacker {
         unsafe = u;
     }
 
+    public static boolean enableForeignAccessForUnnamed() {
+        return enableForeignAccess(null);
+    }
+
+    public static boolean enableForeignAccessForUnnamed(PrintWriter errorHandle) {
+        return enableForeignAccess(null, errorHandle);
+    }
+
+
     public static boolean enableForeignAccess(Module module) {
-        return enableForeignAccess(module, null);
+        return enableForeignAccess(module, new PrintWriter(System.err));
     }
 
     public static boolean enableForeignAccess(Module module, PrintWriter errorHandle) {
@@ -51,7 +60,7 @@ public final class ForeignHacker {
                         "permit"
                 );
             } else if (Runtime.version().feature() >= 17) {
-                if (!module.isNamed()) {
+                if (module == null || !module.isNamed()) {
                     var lookup = MethodHandles.privateLookupIn(Module.class, MethodHandles.lookup());
                     module = (Module) lookup.findStaticVarHandle(Module.class, "ALL_UNNAMED_MODULE", Module.class).get();
                 }
